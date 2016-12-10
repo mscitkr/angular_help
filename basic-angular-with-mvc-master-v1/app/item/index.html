@@ -1,0 +1,165 @@
+﻿<div ng-controller="ItemCtrl">
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools">
+            <span>Item</span>
+            <div flex="" class="flex"></div>
+            <md-button>
+                <md-icon class="material-icons" ng-click="addItem($event)">&#xE147;</md-icon>
+            </md-button>
+
+        </div>
+    </md-toolbar>
+
+    <!-- exact table from live demo -->
+    <md-table-container>
+        <table md-table ng-model="selected" md-progress="promise">
+            <thead md-head md-order="query.order">
+                <tr md-row>
+                    <th  md-column ></th>
+                    <th md-column md-order-by="SKU"><span>SKU</span></th>
+                    <th md-column md-order-by="Category">Category</th>
+                    <th md-column md-order-by="ItemName">Item Name</th>
+                    <th md-column md-order-by="Capacity">Capacity</th>
+                    <th md-column md-order-by="SupplierName">Supplier Name</th>
+                    <th md-column md-order-by="MinStock">Min Stock</th>
+                    <th md-column md-order-by="Stock">Stock</th>
+                    <th md-column md-order-by="SellingPrice">Selling Price</th>
+                    <th md-column md-order-by="PurchasePrice">Purchase Price</th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row ng-repeat="_item in item | orderBy: query.order">
+                    <td md-cell>
+                        <i class="material-icons" ng-click="editItem($index, $event)">&#xE254;</i>
+                    </td>
+                    <td md-cell>{{_item.SKU}}</td>
+                    <td md-cell>{{_item.Category}}</td>
+                    <td md-cell>{{_item.ItemName}}</td>
+                    <td md-cell>{{_item.Capacity}} {{_item.Unit}}</td>
+                    <td md-cell>{{_item.SupplierName}}</td>
+                    <td md-cell>{{_item.MinStock}}</td>
+                    <td md-cell>{{_item.Stock}}</td>
+                    <td md-cell>{{_item.SellingPrice}}</td>
+                    <td md-cell>{{_item.PurchasePrice}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}" md-on-paginate="getDesserts" md-page-select></md-table-pagination>
+
+    <script type="text/ng-template" id="item.html">
+        <md-dialog aria-label="Mango (Fruit)">
+            <form>
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>New Item</h2>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="cancel()">
+                            <i class="material-icons">&#xE14C;</i>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-dialog-content style="min-width:800px;">
+                    <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tab label="Basic Info">
+                            <md-content class="md-padding" style="min-height:500px">
+
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Sku</label>
+                                        <input ng-model="pItem.BasicInfo.Sku" >
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Item Name</label>
+                                        <input ng-model="pItem.BasicInfo.ItemName" >
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Item Sort Name</label>
+                                        <input ng-model="pItem.BasicInfo.ItemSortName" >
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>Minimum Stock</label>
+                                        <input ng-model="pItem.BasicInfo.MinStock" >
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>Capacity</label>
+                                        <input ng-model="pItem.BasicInfo.Capacity">
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Unit</label>
+                                        <md-select ng-model="pItem.BasicInfo.Unit">
+                                            <md-option ng-repeat="unit in Units" value="{{$index}}">
+                                                {{unit.Unit}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Catagory</label>
+                                        <md-select ng-model="pItem.BasicInfo.Catagory">
+                                            <md-option ng-repeat="cat in Category" value="{{$index}}">
+                                                {{cat.name}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container  class="md-block" flex-gt-sm>
+                                        <label>Description</label>
+                                        <textarea ng-model="pItem.BasicInfo.Description" md-maxlength="150"
+                                                  rows="2" md-select-on-focus></textarea>
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Selling Price</label>
+                                        <input ng-model="pItem.BasicInfo.SellingPrice">
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-sm>
+                                        <label>Purchase Price</label>
+                                        <input ng-model="pItem.BasicInfo.PurchasePrice">
+                                    </md-input-container>
+
+                                </div>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Supplier">
+                            <md-content class="md-padding">
+                                <md-input-container>
+                                    <label>Supplier</label>
+                                    <md-select ng-model="user.state">
+                                        <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                                            {{state.abbrev}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </md-content>
+                        </md-tab>
+                        <md-tab label="Customer Pricing">
+                            <md-content class="md-padding">
+
+                            </md-content>
+                        </md-tab>
+                    </md-tabs>
+                </md-dialog-content>
+
+                <md-dialog-actions layout="row">
+
+                    <span flex></span>
+                    <md-button ng-click="Save()">
+                        Save
+                    </md-button>
+                    <md-button ng-click="Cancel()" style="margin-right:20px;">
+                        Cancel
+                    </md-button>
+                </md-dialog-actions>
+            </form>
+        </md-dialog>
+    </script>
+</div>

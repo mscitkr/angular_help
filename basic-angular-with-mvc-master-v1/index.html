@@ -1,0 +1,133 @@
+﻿<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link href="js/md-data-table.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+
+            .form-control[disabled], fieldset[disabled] .form-control {
+                cursor: not-allowed;
+            }
+
+            .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+                background-color: #eee;
+                opacity: 1;
+            }
+    </style>
+</head>
+<body ng-app="App" ng-cloak>
+    <div ng-controller="AppCtrl">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-button ng-click="openSideNavPanel()">
+                    <md-tooltip>Options</md-tooltip>
+                    <md-icon class="md-default-theme" class="material-icons">&#xE5D2;</md-icon>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Icon">
+                    <md-tooltip>User</md-tooltip>
+                    <md-icon class="md-default-theme" md-svg-icon="fb.svg"></md-icon>
+                </md-button>
+                <h2>
+                    <span>Heading</span>
+                </h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="User">
+                    <md-tooltip>User</md-tooltip>
+                    <img src="user.png" style="width:24px;height:24px;" />
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Messages">
+                    <md-tooltip>Messages</md-tooltip>
+                    <img src="messages.png" style="width:24px;height:24px;" />
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+                    md-component-id="left">
+            <md-toolbar layout="row">
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span>POS System</span>
+                    </h2>
+                    <span flex></span>
+                    <md-button class="md-icon-button" aria-label="Close Side Panel"
+                               ng-click="closeSideNavPanel()">
+                        <md-tooltip>Close Side Panel</md-tooltip>
+                        <md-icon class="md-default-theme" class="material-icons">&#xE5CD;</md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-content layout-padding="">
+                <md-list>
+                    <md-subheader class="md-no-sticky">Inventory</md-subheader>
+                    <md-list-item href="#/item">
+                        <md-icon class="md-default-theme" class="material-icons">&#xE0C9;</md-icon>
+                        <p>Item Configuration</p>
+                        <div class="md-secondary"></div>
+                    </md-list-item>
+                    <md-list-item>
+                        <md-icon class="md-default-theme" class="material-icons">&#xE878;</md-icon>
+                        <p>Events</p>
+                        <md-icon class="md-secondary">2</md-icon>
+                    </md-list-item>
+                    <md-list-item>
+                        <md-icon class="md-default-theme" class="material-icons">&#xE251;</md-icon>
+                        <p>Photos</p>
+                        <md-icon class="md-secondary">2</md-icon>
+                    </md-list-item>
+                    <md-divider></md-divider>Category
+                    <md-subheader class="md-no-sticky">Configurations</md-subheader>
+                    <md-list-item href="#/Category">
+                        <md-icon class="md-default-theme" class="material-icons">&#xE0C9;</md-icon>
+                        <p>Category</p>
+                        <div class="md-secondary"></div>
+                    </md-list-item>
+
+                    <md-list-item>
+                        <md-icon class="md-default-theme" class="material-icons">&#xE1BC;</md-icon>
+                        <p>Like Pages</p>
+                        <div class="md-secondary">20+</div>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </md-sidenav>
+        <md-content layout-padding="" ng-view>
+        </md-content>
+    </div>
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="js/ocLazyLoad.min.js"></script>
+    <!-- style sheet -->
+    <!-- module -->
+    <script type="text/javascript" src="js/md-data-table.min.js"></script>
+    <!-- Your application bootstrap  -->
+    <script type="text/javascript" src="js/app.js"></script>
+    <script src="js/header.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</body>
+</html>

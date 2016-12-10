@@ -1,0 +1,85 @@
+﻿
+<style>
+    md-input-container {
+        margin: 2px 0px;
+    }
+
+    .md-button.md-fab.md-mini {
+        line-height: 30px;
+        width: 30px;
+        height: 30px;
+    }
+
+        .md-button.md-fab.md-mini .material-icons {
+            font-size: 18px;
+        }
+</style>
+<div ng-controller="CategoryCtrl">
+    <md-card>
+        <md-toolbar class="md-table-toolbar md-default">
+            <div class="md-toolbar-tools">
+                <span>Item Category</span>
+                <div flex="" class="flex"></div>
+
+            </div>
+        </md-toolbar>
+
+        <!-- exact table from live demo -->
+        <md-table-container style="width:600px">
+            <table md-table>
+                <thead md-head>
+                    <tr md-row>
+                        <th md-column><span>Code</span></th>
+                        <th md-column><span>Category</span></th>
+                        <th md-column style="width:50px"><span>Edit</span></th>
+                        <th md-column style="width:50px"><span>Remove</span></th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="_item in item">
+                        <td md-cell>
+                                <input class="form-control" ng-disabled="Selecteditem!=$index" ng-model="_item.code">
+                        </td>
+                        <td md-cell>
+                                <input class="form-control"  ng-disabled="Selecteditem!=$index"  ng-model="_item.name">
+                        </td>
+                        <td md-cell>
+                            <md-button class="md-fab md-mini md-primary"
+                                       ng-click="Edit($index)" aria-label="Use Android">
+                                <i class="material-icons">{{(Selecteditem!=$index)?'&#xE150;':'&#xE876;'}}</i>
+                            </md-button>
+                        </td>
+                        <td md-cell>
+                            <md-button class="md-fab md-mini md-primary"
+                                       ng-click="Remove($index)" aria-label="Use Android">
+                                <i class="material-icons">{{(Selecteditem!=$index)?'&#xE14C;':'&#xE033;'}}</i>
+                            </md-button>
+                        </td>
+                    </tr>
+
+                </tbody>
+                <tfoot md-footer>
+                    <tr md-row>
+                        <td md-cell>
+
+                            <input  class="form-control"  placeholder="Code" ng-model="data.code">
+
+                        </td>
+                        <td md-cell>
+                            <input class="form-control"  placeholder="Category" ng-model="data.name">
+                        </td>
+                        <td md-cell>
+                            <md-button class="md-fab md-mini md-primary"
+                                       ng-click="Add($event)" aria-label="Use Android">
+                                <i class="material-icons">&#xE145;</i>
+                            </md-button>
+                        </td>
+                        <td md-cell>
+                            -
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </md-table-container>
+    </md-card>
+</div>
