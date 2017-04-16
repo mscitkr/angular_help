@@ -3,4 +3,4 @@ This project allowed developer to start basic project with angular material with
 
 
 Example of bind-html-compile
- <div bind-html-compile="FilterTemplate[$index].HTML"></div>
+ bind-html-compile="yourHTMLTemp"
